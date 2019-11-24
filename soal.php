@@ -55,6 +55,8 @@
             <div class="form-group text-left">
                 <label>Nama</label>
                 <input type="text" name="nama_siswa" class="form-control" placeholder="masukan nama" required>
+                <input type="hidden" name="kelas" class="form-control" value="<?=$kelas?>" required>
+                <input type="hidden" name="tematik" class="form-control" value="<?=$tematik?>" required>
             </div>
           </div>
           </div>
@@ -65,14 +67,14 @@
               <div class="col-md-6 text-left">
                 <h4><?=$no?>. <?=$d_k['pertanyaan']?></h4>
                     <ol type='A'>
-                        <li><input type="radio" name="<?=$d_k['id_soal']?>" value="a" required> <?=$d_k['a']?></li>
-                        <li><input type="radio" name="<?=$d_k['id_soal']?>" value="b" required> <?=$d_k['b']?></li>
-                        <li><input type="radio" name="<?=$d_k['id_soal']?>" value="c" required> <?=$d_k['c']?></li>
-                        <li><input type="radio" name="<?=$d_k['id_soal']?>" value="d" required> <?=$d_k['d']?></li>
+                        <li><input type="radio" name="id_soal[<?=$d_k['id_soal']?>]" value="a" required> <?=$d_k['a']?></li>
+                        <li><input type="radio" name="id_soal[<?=$d_k['id_soal']?>]" value="b" required> <?=$d_k['b']?></li>
+                        <li><input type="radio" name="id_soal[<?=$d_k['id_soal']?>]" value="c" required> <?=$d_k['c']?></li>
+                        <li><input type="radio" name="id_soal[<?=$d_k['id_soal']?>]" value="d" required> <?=$d_k['d']?></li>
                     </ol>
               </div>
             <?php } ?>
-            <div class="col-md-6 text-left">
+            <div class="col-md-12 text-left">
             <button style="margin-top:60px" type="submit" name="simpansoal" value="Upload" class="btn btn-default">Kirim</button>
           </div>
           </div>
