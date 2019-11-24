@@ -23,25 +23,32 @@ include "koneksi.php";
     $kelas = $_GET['kelas'];
   }
 
+  if(!isset($_GET['tematik'])){
+    $tematik = 1;
+  }else{
+    $tematik = $_GET['tematik'];
+  }
+
   if(isset($_GET['id_soal'])){
     $delete_soal = mysqli_query($koneksi,"DELETE FROM tb_soalkelas where id_soal = ".$_GET['id_soal']."");
     if($delete_soal){
-      header("Location: http://localhost/bob/menusoal.php?kelas=".$kelas."");
+      header("Location: http://localhost/bob/menusoal.php?kelas=".$kelas."&tematik=".$tematik."");
     }
   }
 
   if(isset($_POST['simpansoal'])){
       $insert_pertanyaan = $_POST['pertanyaan'];
       $insert_kelas = $_POST['kelas'];
+      $tematik = $_POST['tematik'];
       $insert_a = $_POST['a'];
       $insert_b = $_POST['b'];
       $insert_c = $_POST['c'];
       $insert_d = $_POST['d'];
       $insert_jawaban = $_POST['jawaban'];
 
-      $insert_soal = mysqli_query($koneksi,"INSERT INTO tb_soalkelas (kelas,pertanyaan,a,b,c,d,jawaban) VALUES ('$insert_kelas','$insert_pertanyaan','$insert_a','$insert_b','$insert_c','$insert_d','$insert_jawaban')");
+      $insert_soal = mysqli_query($koneksi,"INSERT INTO tb_soalkelas (kelas,tematik,pertanyaan,a,b,c,d,jawaban) VALUES ('$insert_kelas','$tematik','$insert_pertanyaan','$insert_a','$insert_b','$insert_c','$insert_d','$insert_jawaban')");
       if($insert_soal){
-        header("Location: http://localhost/bob/menusoal.php?kelas=".$insert_kelas."");
+        header("Location: http://localhost/bob/menusoal.php?kelas=".$insert_kelas."&tematik=".$tematik."");
       }
 
   }
@@ -108,11 +115,29 @@ include "koneksi.php";
         </nav>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
+          <div class="dropdown">
+           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pilih Tematik
+           <span class="caret"></span></button>
+           <ul class="dropdown-menu">
+              <?php
+              if($kelas < 4){
+              $k = 8;
+              }else{
+              $k = 9;
+              }
+
+              for($i = 1 ; $i <= $k ; $i++){?>
+                <li><a href="menusoal.php?kelas=<?=$kelas?>&tematik=<?=$i?>">Tematik <?=$i?></a></li>
+             <?php
+              }
+              ?>
+           </ul>
+         </div>
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            Soal Kelas <?=$kelas?>
+                            Soal Kelas <?=$kelas?> Tematik <?=$tematik?>
                         </h1>
                         <div class="row">
                             <div class="col-lg-12">
@@ -133,6 +158,7 @@ include "koneksi.php";
                                                 <textarea type="text" name="pertanyaan" class="form-control" placeholder="Masukan Pertanyaan Soal" required></textarea>
                                             </div>
                                             <input type="hidden" name="kelas" value="<?=$kelas?>">
+                                            <input type="hidden" name="tematik" value="<?=$tematik?>">
                                             <div class="form-group">
                                                 <label>Jawaban A</label>
                                                 <input type="text" name="a" class="form-control" placeholder="Masukan Jawaban A" required>
@@ -187,7 +213,7 @@ include "koneksi.php";
                                   </thead>
                                   <tbody>
                                     <?php
-                                      $data_kelas = mysqli_query($koneksi,"SELECT * FROM tb_soalkelas where kelas=".$kelas."");
+                                      $data_kelas = mysqli_query($koneksi,"SELECT * FROM tb_soalkelas where kelas=".$kelas." && tematik=".$tematik."");
                                       $no = 0;
                                       foreach($data_kelas as $d_k){?>
                                       <tr>
@@ -198,7 +224,7 @@ include "koneksi.php";
                                         <td><?=$d_k['c']?></td>
                                         <td><?=$d_k['d']?></td>
                                         <td><?=$d_k['jawaban']?></td>
-                                        <td><a href="http://localhost/bob/menusoal.php?kelas=<?=$kelas?>&id_soal=<?=$d_k['id_soal']?>"><button type="button" class="btn btn-danger" >Hapus</button></a></td>
+                                        <td><a href="http://localhost/bob/menusoal.php?kelas=<?=$kelas?>&tematik=<?=$tematik?>&id_soal=<?=$d_k['id_soal']?>"><button type="button" class="btn btn-danger" >Hapus</button></a></td>
                                       </tr>
                                       <?php
                                       }

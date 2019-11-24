@@ -10,7 +10,7 @@
         <title>Lucifer Morningstar</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
@@ -22,7 +22,7 @@
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
     <body>
-        
+
 
         <section class="first-gallery-section">
           <div class="container">
@@ -39,21 +39,21 @@
         </section>
 
 
-        
 
-  
+
+
         <div class="content-wrapper">
             <div class="inner-container container">
                 <div class="projects-holder-3">
-                   
+
                     <div class="projects-holder">
                         <div class="row">
                             <div class="col-md-3 col-sm-6 project-item mix nature">
                               <div class="image">
-                                <a href="icon/soal.png" data-lightbox="image-1"><img src="icon/soal.png"></a>
+                                <a href="page1.php"><img src="icon/soal.png"></a>
                               </div>
                               <div class="text">
-                                 <div class ="primary-button"><center><a href="">Latihan Soal</a></button></center></div>
+                                 <div class ="primary-button"><center><a href="page1.php">Latihan Soal</a></button></center></div>
                               </div>
                             </div>
                             <div class="col-md-3 col-sm-6 project-item mix webdesign">
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
 
         <footer>
           <div class="container">
