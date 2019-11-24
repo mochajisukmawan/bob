@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Nov 2019 pada 11.38
+-- Waktu pembuatan: 24 Nov 2019 pada 14.59
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -61,12 +61,35 @@ INSERT INTO `tb_kelas1` (`no`, `judulbuku`, `buku`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_nilai_siswa`
+--
+
+CREATE TABLE `tb_nilai_siswa` (
+  `id_nilai` bigint(20) NOT NULL,
+  `nama_siswa` varchar(100) NOT NULL,
+  `kelas` int(1) NOT NULL,
+  `tematik` int(1) NOT NULL,
+  `jawaban_siswa` varchar(100) NOT NULL,
+  `tgl_input` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_nilai_siswa`
+--
+
+INSERT INTO `tb_nilai_siswa` (`id_nilai`, `nama_siswa`, `kelas`, `tematik`, `jawaban_siswa`, `tgl_input`) VALUES
+(3454, 'luna', 1, 1, '{\"1\":\"a\",\"24\":\"d\",\"32\":\"a\"}', '2019-11-24 08:00:26');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_soalkelas`
 --
 
 CREATE TABLE `tb_soalkelas` (
   `id_soal` int(10) NOT NULL,
   `kelas` int(1) NOT NULL,
+  `tematik` int(1) NOT NULL,
   `pertanyaan` text NOT NULL,
   `a` varchar(100) NOT NULL,
   `b` varchar(100) NOT NULL,
@@ -79,10 +102,11 @@ CREATE TABLE `tb_soalkelas` (
 -- Dumping data untuk tabel `tb_soalkelas`
 --
 
-INSERT INTO `tb_soalkelas` (`id_soal`, `kelas`, `pertanyaan`, `a`, `b`, `c`, `d`, `jawaban`) VALUES
-(1, 1, 'Siapakah Nama Presiden Pertama di Konoha?', 'Naruto', 'Sunade', 'Tobi', 'Hasirama', 'd'),
-(22, 2, 'Nama Ekor 9 Naruto?', 'Kudanil', 'Coro', 'Siamang', 'Kyubi', 'd'),
-(24, 1, '1+1?', '3', '4', '5', '2', 'd');
+INSERT INTO `tb_soalkelas` (`id_soal`, `kelas`, `tematik`, `pertanyaan`, `a`, `b`, `c`, `d`, `jawaban`) VALUES
+(1, 1, 1, 'Siapakah Nama Presiden Pertama di Konoha?', 'Naruto', 'Sunade', 'Tobi', 'Hasirama', 'd'),
+(22, 2, 1, 'Nama Ekor 9 Naruto?', 'Kudanil', 'Coro', 'Siamang', 'Kyubi', 'd'),
+(24, 1, 1, '1+1?', '3', '4', '5', '2', 'd'),
+(32, 1, 1, '2 pangka 2?', '4', '6', '5', '8', 'a');
 
 --
 -- Indexes for dumped tables
@@ -99,6 +123,12 @@ ALTER TABLE `db_aplikasi`
 --
 ALTER TABLE `tb_kelas1`
   ADD PRIMARY KEY (`no`);
+
+--
+-- Indeks untuk tabel `tb_nilai_siswa`
+--
+ALTER TABLE `tb_nilai_siswa`
+  ADD PRIMARY KEY (`id_nilai`);
 
 --
 -- Indeks untuk tabel `tb_soalkelas`
@@ -123,10 +153,16 @@ ALTER TABLE `tb_kelas1`
   MODIFY `no` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT untuk tabel `tb_nilai_siswa`
+--
+ALTER TABLE `tb_nilai_siswa`
+  MODIFY `id_nilai` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3455;
+
+--
 -- AUTO_INCREMENT untuk tabel `tb_soalkelas`
 --
 ALTER TABLE `tb_soalkelas`
-  MODIFY `id_soal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_soal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
